@@ -1,13 +1,16 @@
 
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class PlayerRaycast : MonoBehaviour
 {
+
     [Header("Raycast")]
+    [SerializeField] private FirstPersonController player;
     [SerializeField] private float rayLength = 5f;
-    [SerializeField] Transform cameraBase;
+
     [Header("Raycast")]
     private Image crosshair;
     [SerializeField] private Sprite crosshairBase;
@@ -18,7 +21,6 @@ public class PlayerRaycast : MonoBehaviour
 
     //TODO: make an interface called Interactable. in it everything the player can interact with implements said interface
     // Notecontroller is one of them but we will also have pickup objects and inspect objects they all inheret from this interface
-
     private NoteController noteController;
 
     void Start()
@@ -29,33 +31,30 @@ public class PlayerRaycast : MonoBehaviour
         {
             crosshair.sprite = crosshairBase;
         }
-        else
-        {
-            Debug.LogError("Image component not found on the GameObject or its children.");
-        }
 
 
     }
 
     void Update()
     {
-        if (Physics.Raycast(cameraBase.transform.position, cameraBase.transform.TransformDirection(Vector3.forward), out RaycastHit hit, rayLength))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, rayLength))
         {
             var readableItem = hit.collider.GetComponent<NoteController>();
             if (readableItem != null)
             {
                 noteController = readableItem;
+                noteController.SetInteractor(player);
                 crosshair.sprite = noteController.GetCrosshairImg();
             }
             else
             {
-                ClearNote();
+                ClearInteractable();
             }
 
         }
         else
         {
-            ClearNote();
+            ClearInteractable();
         }
         if (noteController != null)
         {
@@ -63,11 +62,13 @@ public class PlayerRaycast : MonoBehaviour
             {
                 //later in the code u use the interactable interface and call the interact function
                 //instead of this shownote the interactable will have a interact function that they all implement and that will be called here 
+                //another important thing is u can change the camera position and lock it with the cameraBase transfroms for certain puzzles 
+                //that too will be a interactable type u press "E" and it puts the camera somewhere and locks it 
                 noteController.ShowNote();
             }
         }
     }
-    private void ClearNote()
+    private void ClearInteractable()
     {
         if (noteController != null)
         {

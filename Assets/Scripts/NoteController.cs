@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Events;
 using StarterAssets;
-using UnityEngine.Rendering;
+using System;
 
 public class NoteController : MonoBehaviour
 {
-    [SerializeField] Sprite crosshairImg;
-    [SerializeField] FirstPersonController player;
+    [SerializeField] private Sprite crosshairImg;
+    private FirstPersonController player;
     private bool isOpen = false;
-    //  [SerializeField] private UnityEvent openEvent;
+
+    public event Action onClosed;
 
     [Header("Input")]
     [SerializeField] private KeyCode closeKey;
@@ -29,7 +29,6 @@ public class NoteController : MonoBehaviour
     {
         noteTextArea.text = noteText;
         noteCanvas.SetActive(true);
-        //  openEvent.Invoke();
         DisablePlayer(false);
         isOpen = true;
     }
@@ -62,5 +61,9 @@ public class NoteController : MonoBehaviour
             }
         }
 
+    }
+    public void SetInteractor(FirstPersonController player)
+    {
+        this.player = player;
     }
 }

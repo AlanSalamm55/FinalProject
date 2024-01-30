@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshairImg: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
-  player: {fileID: 0}
   closeKey: 8
   noteCanvas: {fileID: 1002772682890327431}
   noteTextArea: {fileID: 1002772683555116091}
@@ -269,7 +268,7 @@ PrefabInstance:
     - target: {fileID: 6777283245629376158, guid: 97dda67ef63bedb4d812c2a7e6122565,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97dda67ef63bedb4d812c2a7e6122565, type: 3}
