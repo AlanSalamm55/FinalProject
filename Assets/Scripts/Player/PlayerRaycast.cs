@@ -41,13 +41,10 @@ public class PlayerRaycast : MonoBehaviour
     {
         if (Physics.Raycast(cameraBase.transform.position, cameraBase.transform.TransformDirection(Vector3.forward), out RaycastHit hit, rayLength))
         {
-            Debug.Log("raycast did happen");
-
             var readableItem = hit.collider.GetComponent<NoteController>();
             if (readableItem != null)
             {
                 noteController = readableItem;
-                Debug.Log("shhirr");
                 crosshair.sprite = noteController.GetCrosshairImg();
             }
             else
