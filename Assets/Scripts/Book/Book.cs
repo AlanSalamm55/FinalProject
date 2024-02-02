@@ -8,7 +8,7 @@ public class Book : MonoBehaviour
     {
         BookVisual.SetActive(false);
     }
-    // Method to show the book visual
+
     public void ShowBookVisual(bool show)
     {
 

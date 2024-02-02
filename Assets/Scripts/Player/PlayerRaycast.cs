@@ -9,6 +9,7 @@ public class PlayerRaycast : MonoBehaviour
 
     [Header("Raycast")]
     [SerializeField] private FirstPersonController player;
+    private PlayerBookComponent bookComp;
     [SerializeField] private float rayLength = 5f;
 
     [Header("Raycast")]
@@ -19,12 +20,11 @@ public class PlayerRaycast : MonoBehaviour
     [SerializeField] private KeyCode interactKey;
 
 
-    //TODO: make an interface called Interactable. in it everything the player can interact with implements said interface
-    // Notecontroller is one of them but we will also have pickup objects and inspect objects they all inheret from this interface
-    private NoteController noteController;
+    private Interactable interactable;
 
     void Start()
     {
+        bookComp = this.GetComponent<PlayerBookComponent>();
         crosshair = GetComponentInChildren<Image>();
 
         if (crosshair != null)
@@ -42,9 +42,17 @@ public class PlayerRaycast : MonoBehaviour
             var readableItem = hit.collider.GetComponent<NoteController>();
             if (readableItem != null)
             {
-                noteController = readableItem;
-                noteController.SetInteractor(player);
-                crosshair.sprite = noteController.GetCrosshairImg();
+                interactable = readableItem;
+                interactable.SetInteractor(player);
+
+                //List<Word> words = interactable.GetWordsInInteractable();
+
+                //foreach (Word word in words)
+                //{
+                //    bookComp.AddWordToKurdishVocabulary(word.KurdishWord);
+                //}
+
+                crosshair.sprite = interactable.GetCrosshairImg();
             }
             else
             {
@@ -56,26 +64,23 @@ public class PlayerRaycast : MonoBehaviour
         {
             ClearInteractable();
         }
-        if (noteController != null)
+        if (interactable != null)
         {
             if (Input.GetKeyDown(interactKey))
             {
-                //later in the code u use the interactable interface and call the interact function
-                //instead of this shownote the interactable will have a interact function that they all implement and that will be called here 
-                //another important thing is u can change the camera position and lock it with the cameraBase transfroms for certain puzzles 
-                //that too will be a interactable type u press "E" and it puts the camera somewhere and locks it 
-                noteController.ShowNote();
+                interactable.ShowInteractable();
             }
         }
     }
     private void ClearInteractable()
     {
-        if (noteController != null)
+        if (interactable != null)
         {
             SetCrossHairImg(crosshairBase);
-            noteController = null;
+            interactable = null;
         }
     }
+
     private void SetCrossHairImg(Sprite img) { crosshair.sprite = img; }
 
 
