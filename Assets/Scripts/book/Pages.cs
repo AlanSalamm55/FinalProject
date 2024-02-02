@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class book : MonoBehaviour
+public class Pages : MonoBehaviour
 {
-    [SerializeField] float pageSpeed = 0.5f;
-    [SerializeField] List<Transform> pages;
-    int index = -1;
-    bool rotate = false;
-    [SerializeField] GameObject backButton;
-    [SerializeField] GameObject forwardButton;
+    private int index = -1;
+    private bool rotate = false;
+
+    [SerializeField] private float pageSpeed = 0.5f;
+    [SerializeField] private List<Transform> pages;
+    [SerializeField] private GameObject backButton;
+    [SerializeField] private GameObject nextButton;
 
     private void Start()
     {
@@ -18,9 +19,9 @@ public class book : MonoBehaviour
 
     public void InitialState()
     {
-        for (int i=0; i<pages.Count; i++)
+        for (int i = 0; i < pages.Count; i++)
         {
-            pages[i].transform.rotation=Quaternion.identity;
+            pages[i].transform.rotation = Quaternion.identity;
         }
         pages[0].SetAsLastSibling();
         backButton.SetActive(false);
@@ -46,7 +47,7 @@ public class book : MonoBehaviour
         }
         if (index == pages.Count - 1)
         {
-            forwardButton.SetActive(false); //if the page is last then we turn off the forward button
+            nextButton.SetActive(false); //if the page is last then we turn off the forward button
         }
     }
 
@@ -61,9 +62,9 @@ public class book : MonoBehaviour
 
     public void BackButtonActions()
     {
-        if (forwardButton.activeInHierarchy == false)
+        if (nextButton.activeInHierarchy == false)
         {
-            forwardButton.SetActive(true); //every time we turn the page back, the forward button should be activated
+            nextButton.SetActive(true); //every time we turn the page back, the forward button should be activated
         }
         if (index - 1 == -1)
         {
