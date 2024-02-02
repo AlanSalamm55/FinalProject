@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8616685848737228371}
-  Book: {fileID: 7635252560952708238}
+  book: {fileID: 4231343973432137840}
   interactKey: 113
 --- !u!1 &5393215578589016642
 GameObject:
@@ -681,10 +681,22 @@ PrefabInstance:
     - target: {fileID: 6581061559638982165, guid: 9c5bcfeb0fec2e14fb53617185e83f94,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c5bcfeb0fec2e14fb53617185e83f94, type: 3}
+--- !u!114 &4231343973432137840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8606744619051966116, guid: 9c5bcfeb0fec2e14fb53617185e83f94,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605165476565042900}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987f6df2a02445b4f837c5dcc2567fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7635252560952708238 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2611051552282708570, guid: 9c5bcfeb0fec2e14fb53617185e83f94,

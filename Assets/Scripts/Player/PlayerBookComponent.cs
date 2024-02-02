@@ -7,7 +7,7 @@ public class PlayerBookComponent : MonoBehaviour
     private bool isOpen = false;
 
     //make a book class later
-    [SerializeField] RectTransform Book;
+    [SerializeField] Book book;
 
     [Header("Input System")]
     [SerializeField] private KeyCode interactKey;
@@ -18,7 +18,7 @@ public class PlayerBookComponent : MonoBehaviour
         {
             isOpen = !isOpen;
             DisablePlayer(isOpen);
-            Book.gameObject.SetActive(isOpen);
+            book.ShowBookVisual(isOpen);
         }
     }
 
