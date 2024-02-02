@@ -129,8 +129,6 @@ namespace StarterAssets
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
         }
 
-
-
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
