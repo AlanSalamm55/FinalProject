@@ -673,6 +673,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3884970974220060723, guid: 9c5bcfeb0fec2e14fb53617185e83f94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6581061559638982165, guid: 9c5bcfeb0fec2e14fb53617185e83f94,
         type: 3}
       propertyPath: m_Name
