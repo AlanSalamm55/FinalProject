@@ -791,7 +791,7 @@ PrefabInstance:
     - target: {fileID: 157477618068264570, guid: ca95ffb5f0c04874dac3a120e0c970e0,
         type: 3}
       propertyPath: noteText
-      value: 'meow moew meowa psha jan  '
+      value: 'meowa psha jan  '
       objectReference: {fileID: 0}
     - target: {fileID: 157477618068264570, guid: ca95ffb5f0c04874dac3a120e0c970e0,
         type: 3}

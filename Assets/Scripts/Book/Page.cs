@@ -5,25 +5,32 @@ using UnityEngine.UI;
 
 public class Page : MonoBehaviour
 {
-    private List<TextMeshProUGUI> kurdishWords = new List<TextMeshProUGUI>();
-    [SerializeField] private List<TextMeshProUGUI> englishWords;
+    private List<KurdishWord> kurdishWords = new List<KurdishWord>();
+    [SerializeField] private List<EnglishWord> englishWords;
     [SerializeField] private List<Image> wordIllustrations;
     [SerializeField] private RectTransform kurdishWordContainer;
-    [SerializeField] private TextMeshProUGUI TextPrefab;
+    [SerializeField] private KurdishWord kurdishWordPrefab;
 
 
-    public List<TextMeshProUGUI> KurdishWords
+    public List<KurdishWord> KurdishWords
     {
         get { return kurdishWords; }
         private set { kurdishWords = value; }
     }
+    public List<EnglishWord> EnglishWords
+    {
+        get { return englishWords; }
+        private set { englishWords = value; }
+    }
+
+
 
     public void AddWordToPage(string word)
     {
 
-        TextMeshProUGUI newWordText = Instantiate(TextPrefab, kurdishWordContainer);
+        KurdishWord newWordText = Instantiate(kurdishWordPrefab, kurdishWordContainer);
 
-        newWordText.text = word;
+        newWordText.TextMesh.text = word;
 
         kurdishWords.Add(newWordText);
     }

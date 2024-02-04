@@ -632,7 +632,7 @@ MonoBehaviour:
   englishWords: []
   wordIllustrations: []
   kurdishWordContainer: {fileID: 1317637831016928373}
-  TextPrefab: {fileID: 4089883160507379852, guid: e56bebcd33cf28f4a80c0d72837cddc8,
+  kurdishWordPrefab: {fileID: 5270871521884260964, guid: e56bebcd33cf28f4a80c0d72837cddc8,
     type: 3}
 --- !u!1 &4207691854658176954
 GameObject:
@@ -873,7 +873,7 @@ MonoBehaviour:
   englishWords: []
   wordIllustrations: []
   kurdishWordContainer: {fileID: 1619997972245631870}
-  TextPrefab: {fileID: 4089883160507379852, guid: e56bebcd33cf28f4a80c0d72837cddc8,
+  kurdishWordPrefab: {fileID: 5270871521884260964, guid: e56bebcd33cf28f4a80c0d72837cddc8,
     type: 3}
 --- !u!1 &5607503311770716292
 GameObject:

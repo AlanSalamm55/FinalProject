@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class KurdishWord : MonoBehaviour
+public class EnglishWord : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMesh;
 
