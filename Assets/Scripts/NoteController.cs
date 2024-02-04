@@ -13,7 +13,7 @@ public class NoteController : MonoBehaviour, Interactable
     private bool isOpenedOnce = false;
 
     public event Action onClosed;
-    [SerializeField] private List<string> wordsInNote = new List<string>();
+    [SerializeField] private List<KurdishWord> wordsInNote;
 
     [Header("Input")]
     [SerializeField] private KeyCode closeKey;
@@ -21,8 +21,6 @@ public class NoteController : MonoBehaviour, Interactable
     [Header("UI")]
     [SerializeField] private GameObject noteCanvas;
     [SerializeField] private int pageIndex;
-    [SerializeField] TextMeshProUGUI noteTextArea;
-    [Space(10)][SerializeField][TextArea] private string noteText;
 
 
 
@@ -34,7 +32,6 @@ public class NoteController : MonoBehaviour, Interactable
     public void ShowInteractable()
     {
         if (!isOpenedOnce) { isOpenedOnce = true; }
-        noteTextArea.text = noteText;
         noteCanvas.SetActive(true);
         DisablePlayer(false);
         isOpen = true;
@@ -42,7 +39,6 @@ public class NoteController : MonoBehaviour, Interactable
 
     public void CloseNote()
     {
-        noteTextArea.text = null;
         noteCanvas.SetActive(false);
         DisablePlayer(true);
         isOpen = false;
@@ -74,7 +70,7 @@ public class NoteController : MonoBehaviour, Interactable
         this.player = player;
     }
 
-    public List<string> GetWordsInInteractable()
+    public List<KurdishWord> GetWordsInInteractable()
     {
         return wordsInNote;
     }

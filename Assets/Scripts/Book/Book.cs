@@ -28,7 +28,7 @@ public class Book : MonoBehaviour
 
     }
 
-    public void AddWordToNoteBookVisual(string word, int pageIndex)
+    public void AddWordToNoteBookVisual(KurdishWord word, int pageIndex)
     {
         if (pageIndex >= 0 && pageIndex < pages.Count)
         {

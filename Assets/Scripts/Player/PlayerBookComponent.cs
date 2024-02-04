@@ -6,9 +6,6 @@ public class PlayerBookComponent : MonoBehaviour
 {
     [SerializeField] private FirstPersonController player;
 
-    //make this sprites later 
-    //private List<string> KurdishWords;
-    //private List<string> EnglishWords;
 
     private bool isOpen = false;
 
@@ -19,8 +16,7 @@ public class PlayerBookComponent : MonoBehaviour
 
     private void Start()
     {
-        //KurdishWords = new List<string>();
-        //EnglishWords = new List<string>();
+
     }
     void Update()
     {
@@ -40,7 +36,7 @@ public class PlayerBookComponent : MonoBehaviour
         Cursor.lockState = disable ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
-    public void AddWordToKurdishVocabulary(string kurdishWord, int pageIndex)
+    public void AddWordToKurdishVocabulary(KurdishWord kurdishWord, int pageIndex)
     {
         //KurdishWords.Add(kurdishWord);
         book.AddWordToNoteBookVisual(kurdishWord, pageIndex);

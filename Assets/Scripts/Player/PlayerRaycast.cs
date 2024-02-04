@@ -79,11 +79,11 @@ public class PlayerRaycast : MonoBehaviour
 
     private void HandleWordInteractions()
     {
-        List<string> words = interactable.GetWordsInInteractable();
+        List<KurdishWord> words = interactable.GetWordsInInteractable();
         int pageIndex = interactable.GetPageIndex();
         if (words != null)
         {
-            foreach (string word in words)
+            foreach (KurdishWord word in words)
             {
                 bookComp.AddWordToKurdishVocabulary(word, pageIndex);
             }

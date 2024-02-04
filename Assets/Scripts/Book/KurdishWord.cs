@@ -1,14 +1,15 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KurdishWord : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textMesh;
+    [SerializeField] private Image image;
 
-    public TextMeshProUGUI TextMesh
+    public Image Image
     {
-        get { return textMesh; }
-        set { textMesh = value; }
+        get { return image; }
+        set { image = value; }
     }
 
 }

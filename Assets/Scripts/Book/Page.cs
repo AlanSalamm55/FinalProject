@@ -9,7 +9,6 @@ public class Page : MonoBehaviour
     [SerializeField] private List<EnglishWord> englishWords;
     [SerializeField] private List<Image> wordIllustrations;
     [SerializeField] private RectTransform kurdishWordContainer;
-    [SerializeField] private KurdishWord kurdishWordPrefab;
 
 
     public List<KurdishWord> KurdishWords
@@ -25,12 +24,10 @@ public class Page : MonoBehaviour
 
 
 
-    public void AddWordToPage(string word)
+    public void AddWordToPage(KurdishWord word)
     {
 
-        KurdishWord newWordText = Instantiate(kurdishWordPrefab, kurdishWordContainer);
-
-        newWordText.TextMesh.text = word;
+        KurdishWord newWordText = Instantiate(word, kurdishWordContainer);
 
         kurdishWords.Add(newWordText);
     }
