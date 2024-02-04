@@ -6,8 +6,11 @@ using UnityEngine;
 
 public interface Interactable
 {
+    public bool IsOpenedOnce();
     public void ShowInteractable();
     public void SetInteractor(FirstPersonController player);
-    public List<Word> GetWordsInInteractable();
+    public List<string> GetWordsInInteractable();
     public Sprite GetCrosshairImg();
+    public int GetPageIndex();
+
 }

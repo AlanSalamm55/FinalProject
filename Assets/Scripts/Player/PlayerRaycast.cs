@@ -1,5 +1,6 @@
 
 using StarterAssets;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,39 +40,56 @@ public class PlayerRaycast : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, rayLength))
         {
-            var readableItem = hit.collider.GetComponent<NoteController>();
-            if (readableItem != null)
-            {
-                interactable = readableItem;
-                interactable.SetInteractor(player);
-
-                //List<Word> words = interactable.GetWordsInInteractable();
-
-                //foreach (Word word in words)
-                //{
-                //    bookComp.AddWordToKurdishVocabulary(word.KurdishWord);
-                //}
-
-                crosshair.sprite = interactable.GetCrosshairImg();
-            }
-            else
-            {
-                ClearInteractable();
-            }
-
+            HandleRaycastHit(hit);
         }
         else
         {
             ClearInteractable();
         }
-        if (interactable != null)
+
+        TryInteract();
+    }
+
+    private void HandleRaycastHit(RaycastHit hit)
+    {
+        var readableItem = hit.collider.GetComponent<NoteController>();
+        if (readableItem != null)
         {
-            if (Input.GetKeyDown(interactKey))
+            interactable = readableItem;
+            interactable.SetInteractor(player);
+            crosshair.sprite = interactable.GetCrosshairImg();
+        }
+        else
+        {
+            ClearInteractable();
+        }
+    }
+
+    private void TryInteract()
+    {
+        if (interactable != null && Input.GetKeyDown(interactKey))
+        {
+            if (!interactable.IsOpenedOnce())
             {
-                interactable.ShowInteractable();
+                HandleWordInteractions();
+            }
+            interactable.ShowInteractable();
+        }
+    }
+
+    private void HandleWordInteractions()
+    {
+        List<string> words = interactable.GetWordsInInteractable();
+        int pageIndex = interactable.GetPageIndex();
+        if (words != null)
+        {
+            foreach (string word in words)
+            {
+                bookComp.AddWordToKurdishVocabulary(word, pageIndex);
             }
         }
     }
+
     private void ClearInteractable()
     {
         if (interactable != null)

@@ -1,6 +1,5 @@
 
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using StarterAssets;
 using System;
@@ -11,27 +10,30 @@ public class NoteController : MonoBehaviour, Interactable
     [SerializeField] private Sprite crosshairImg;
     private FirstPersonController player;
     private bool isOpen = false;
+    private bool isOpenedOnce = false;
 
     public event Action onClosed;
-    [SerializeField] private List<Word> wordsInNote;
+    [SerializeField] private List<string> wordsInNote = new List<string>();
 
     [Header("Input")]
     [SerializeField] private KeyCode closeKey;
 
     [Header("UI")]
     [SerializeField] private GameObject noteCanvas;
+    [SerializeField] private int pageIndex;
     [SerializeField] TextMeshProUGUI noteTextArea;
     [Space(10)][SerializeField][TextArea] private string noteText;
+
 
 
 
     private void Start()
     {
         noteCanvas.SetActive(false);
-        wordsInNote = new List<Word>();
     }
     public void ShowInteractable()
     {
+        if (!isOpenedOnce) { isOpenedOnce = true; }
         noteTextArea.text = noteText;
         noteCanvas.SetActive(true);
         DisablePlayer(false);
@@ -65,12 +67,22 @@ public class NoteController : MonoBehaviour, Interactable
                 CloseNote();
             }
         }
-
     }
+
     public void SetInteractor(FirstPersonController player)
     {
         this.player = player;
     }
 
-    public List<Word> GetWordsInInteractable() { return wordsInNote; }
+    public List<string> GetWordsInInteractable()
+    {
+        return wordsInNote;
+    }
+
+    public bool IsOpenedOnce()
+    {
+        return isOpenedOnce;
+    }
+
+    public int GetPageIndex() { return pageIndex; }
 }
