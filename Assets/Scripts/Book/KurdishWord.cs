@@ -24,9 +24,7 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            // Enable the input field for entering the guess
             guessInputField.gameObject.SetActive(true);
-            // Focus the input field so the user can start typing immediately
             guessInputField.Select();
             guessInputField.ActivateInputField();
         }
@@ -34,7 +32,6 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
         {
             // Start dragging the object
             isDragging = true;
-            // Calculate the pointer offset to maintain the position of the object while dragging
             RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out pointerOffset);
         }
     }
@@ -43,8 +40,8 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
     {
         if (isDragging)
         {
-            // Calculate the new position of the UI element based on the pointer position and offset
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform.parent as RectTransform, eventData.position, eventData.pressEventCamera, out Vector2 localPointerPosition);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                rectTransform.parent as RectTransform, eventData.position, eventData.pressEventCamera, out Vector2 localPointerPosition);
             rectTransform.localPosition = localPointerPosition - pointerOffset;
         }
     }

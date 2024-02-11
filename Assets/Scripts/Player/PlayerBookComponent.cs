@@ -6,10 +6,10 @@ public class PlayerBookComponent : MonoBehaviour
 {
     [SerializeField] private FirstPersonController player;
 
-
     private bool isOpen = false;
 
-    [SerializeField] Book book;
+    [SerializeField] private Book book;
+    private bool lockState = false;
 
     [Header("Input System")]
     [SerializeField] private KeyCode interactKey;
@@ -18,9 +18,10 @@ public class PlayerBookComponent : MonoBehaviour
     {
 
     }
+
     void Update()
     {
-        if (Input.GetKeyDown(interactKey))
+        if (Input.GetKeyDown(interactKey) && !lockState)
         {
             isOpen = !isOpen;
             DisablePlayer(isOpen);
@@ -31,14 +32,20 @@ public class PlayerBookComponent : MonoBehaviour
     private void DisablePlayer(bool disable)
     {
         player.enabled = !disable;
-        // Toggle cursor visibility and lock state based on the player's ability to move
         Cursor.visible = disable;
         Cursor.lockState = disable ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public void AddWordToKurdishVocabulary(KurdishWord kurdishWord, int pageIndex)
     {
-        //KurdishWords.Add(kurdishWord);
         book.AddWordToNoteBookVisual(kurdishWord, pageIndex);
     }
+
+    // Method to lock/unlock book visual
+    public void LockBookVisual(bool lockState)
+    {
+        this.lockState = lockState;
+    }
+
+    public bool IsOpen() { return isOpen; }
 }

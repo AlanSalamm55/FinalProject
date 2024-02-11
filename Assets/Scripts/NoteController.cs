@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using TMPro;
 using StarterAssets;
@@ -11,6 +10,7 @@ public class NoteController : MonoBehaviour, Interactable
     private FirstPersonController player;
     private bool isOpen = false;
     private bool isOpenedOnce = false;
+    private PlayerBookComponent playerBookComponent; // Reference to PlayerBookComponent
 
     public event Action onClosed;
     [SerializeField] private List<KurdishWord> wordsInNote;
@@ -22,19 +22,18 @@ public class NoteController : MonoBehaviour, Interactable
     [SerializeField] private GameObject noteCanvas;
     [SerializeField] private int pageIndex;
 
-
-
-
     private void Start()
     {
         noteCanvas.SetActive(false);
     }
+
     public void ShowInteractable()
     {
         if (!isOpenedOnce) { isOpenedOnce = true; }
         noteCanvas.SetActive(true);
         DisablePlayer(false);
         isOpen = true;
+        playerBookComponent.LockBookVisual(true); // Lock the book visual when the note is open
     }
 
     public void CloseNote()
@@ -42,6 +41,7 @@ public class NoteController : MonoBehaviour, Interactable
         noteCanvas.SetActive(false);
         DisablePlayer(true);
         isOpen = false;
+        playerBookComponent.LockBookVisual(false); // Unlock the book visual when the note is closed
     }
 
     private void DisablePlayer(bool disable)
@@ -68,6 +68,7 @@ public class NoteController : MonoBehaviour, Interactable
     public void SetInteractor(FirstPersonController player)
     {
         this.player = player;
+        playerBookComponent = player.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>();
     }
 
     public List<KurdishWord> GetWordsInInteractable()
@@ -81,4 +82,6 @@ public class NoteController : MonoBehaviour, Interactable
     }
 
     public int GetPageIndex() { return pageIndex; }
+
+
 }

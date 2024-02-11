@@ -67,7 +67,7 @@ public class PlayerRaycast : MonoBehaviour
 
     private void TryInteract()
     {
-        if (interactable != null && Input.GetKeyDown(interactKey))
+        if (interactable != null && Input.GetKeyDown(interactKey) && !bookComp.IsOpen())
         {
             if (!interactable.IsOpenedOnce())
             {
