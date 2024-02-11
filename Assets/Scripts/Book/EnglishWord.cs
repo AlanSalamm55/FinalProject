@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnglishWord : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMesh;
-
+    [SerializeField] private string text;
     public TextMeshProUGUI TextMesh
     {
         get { return textMesh; }

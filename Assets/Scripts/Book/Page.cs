@@ -28,7 +28,10 @@ public class Page : MonoBehaviour
     {
 
         KurdishWord newWordText = Instantiate(word, kurdishWordContainer);
+        newWordText.transform.Rotate(0, 180, 0);
+        newWordText.ShowGuessText();
 
         kurdishWords.Add(newWordText);
+
     }
 }
