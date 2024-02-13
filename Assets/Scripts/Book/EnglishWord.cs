@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnglishWord : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textMesh;
-    [SerializeField] private string text;
-    public TextMeshProUGUI TextMesh
+    [SerializeField] private Image illustration;
+    [SerializeField] private string rightAnswer;
+    public Image Illustration
     {
-        get { return textMesh; }
-        set { textMesh = value; }
+        get { return illustration; }
+
     }
 
 }

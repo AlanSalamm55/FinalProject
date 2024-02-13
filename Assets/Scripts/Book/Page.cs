@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class Page : MonoBehaviour
 {
     private List<KurdishWord> kurdishWords = new List<KurdishWord>();
-    [SerializeField] private List<EnglishWord> englishWords;
+    private List<EnglishWord> englishWords = new List<EnglishWord>();
     [SerializeField] private List<Image> wordIllustrations;
     [SerializeField] private RectTransform kurdishWordContainer;
+    [SerializeField] private RectTransform illustrationContainer;
 
 
     public List<KurdishWord> KurdishWords
@@ -24,7 +25,7 @@ public class Page : MonoBehaviour
 
 
 
-    public void AddWordToPage(KurdishWord word)
+    public void AddKurdishWordToPage(KurdishWord word)
     {
 
         KurdishWord newWordText = Instantiate(word, kurdishWordContainer);
@@ -33,5 +34,13 @@ public class Page : MonoBehaviour
 
         kurdishWords.Add(newWordText);
 
+    }
+
+    public void AddIllustrationToPage(EnglishWord word)
+    {
+
+        EnglishWord newWordText = Instantiate(word, illustrationContainer);
+        newWordText.transform.Rotate(0, 180, 0);
+        englishWords.Add(newWordText);
     }
 }

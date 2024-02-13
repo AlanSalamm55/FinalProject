@@ -41,6 +41,13 @@ public class PlayerBookComponent : MonoBehaviour
         book.AddWordToNoteBookVisual(kurdishWord, pageIndex);
     }
 
+    public void AddWordToEnglishImages(EnglishWord englishWord, int pageIndex)
+    {
+
+        book.AddImageToNoteBookVisual(englishWord, pageIndex);
+    }
+
+
     // Method to lock/unlock book visual
     public void LockBookVisual(bool lockState)
     {

@@ -32,7 +32,19 @@ public class Book : MonoBehaviour
     {
         if (pageIndex >= 0 && pageIndex < pages.Count)
         {
-            pages[pageIndex].AddWordToPage(word);
+            pages[pageIndex].AddKurdishWordToPage(word);
+        }
+        else
+        {
+            Debug.Log("Invalid pageIndex: " + pageIndex);
+        }
+    }
+
+    public void AddImageToNoteBookVisual(EnglishWord word, int pageIndex)
+    {
+        if (pageIndex >= 0 && pageIndex < pages.Count)
+        {
+            pages[pageIndex].AddIllustrationToPage(word);
         }
         else
         {

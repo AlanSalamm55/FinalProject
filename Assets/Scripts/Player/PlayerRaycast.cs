@@ -90,6 +90,8 @@ public class PlayerRaycast : MonoBehaviour
         }
     }
 
+
+
     private void ClearInteractable()
     {
         if (interactable != null)
