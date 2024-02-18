@@ -29,10 +29,11 @@ public class Page : MonoBehaviour
     {
 
         KurdishWord newWordText = Instantiate(word, kurdishWordContainer);
-        newWordText.transform.Rotate(0, 180, 0);
         newWordText.ShowGuessText();
 
         kurdishWords.Add(newWordText);
+        // Somewhere in your code where you have access to the KurdishWord instance
+        newWordText.DragEnded += RefreshGridLayout;
 
     }
 
@@ -40,7 +41,14 @@ public class Page : MonoBehaviour
     {
 
         EnglishWord newWordText = Instantiate(word, illustrationContainer);
-        newWordText.transform.Rotate(0, 180, 0);
         englishWords.Add(newWordText);
     }
+
+    // Method to refresh the grid layout after drag
+    public void RefreshGridLayout()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(kurdishWordContainer);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(illustrationContainer);
+    }
 }
+

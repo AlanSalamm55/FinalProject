@@ -1,23 +1,24 @@
-using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
+    public event Action DragEnded;
+
     [SerializeField] private Image image;
-    [SerializeField] private TMP_InputField guessInputField; // Reference to the TMP_InputField
+    [SerializeField] private TMP_InputField guessInputField;
     [SerializeField] private string rightAnswer;
 
     private bool isDragging = false;
     private Vector2 pointerOffset;
     private RectTransform rectTransform;
-    private Vector2 originalPosition;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        originalPosition = rectTransform.anchoredPosition;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -30,7 +31,6 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
         }
         else if (eventData.button == PointerEventData.InputButton.Left)
         {
-            // Start dragging the object
             isDragging = true;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out pointerOffset);
         }
@@ -49,9 +49,17 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
+
+        bool collidedWithEnglishWord = Physics2D.OverlapCircle(transform.position, 0.1f, LayerMask.GetMask("EnglishWord"));
+
+        if (!collidedWithEnglishWord)
+        {            // Fire the DragEnded event
+            DragEnded?.Invoke();
+        }
+
+        Debug.Log("collides");
     }
 
-    // Method to show the guess text
     public void ShowGuessText()
     {
         guessInputField.gameObject.SetActive(true);

@@ -60,7 +60,7 @@ PrefabInstance:
     - target: {fileID: 843379035860718479, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 843379035860718479, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
@@ -100,12 +100,12 @@ PrefabInstance:
     - target: {fileID: 843379035860718479, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 121
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 843379035860718479, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 288
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 843379035860718479, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
@@ -132,7 +132,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: b58befec64fd6ee43a11075f6be7e815, type: 2}
+      objectReference: {fileID: 2100000, guid: 26213abcc358eef4b8e7e7b67e4944a2, type: 2}
+    - target: {fileID: 1099866760969098762, guid: ee9127b1af578274cb18eb503db6131d,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6145059826657745763, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: m_Name

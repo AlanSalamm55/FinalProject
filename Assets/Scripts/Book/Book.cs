@@ -4,28 +4,22 @@ using UnityEngine;
 
 public class Book : MonoBehaviour
 {
-    private int index = -1;
-    private bool rotate = false;
-
-    [SerializeField] private float pageSpeed = 0.5f;
     [SerializeField] private List<Page> pages;
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject nextButton;
-
     [SerializeField] private GameObject BookVisual;
+
+    private int currentIndex = 0;
 
     private void Start()
     {
         BookVisual.SetActive(false);
-
         InitialState();
     }
 
     public void ShowBookVisual(bool show)
     {
-
         BookVisual.SetActive(show);
-
     }
 
     public void AddWordToNoteBookVisual(KurdishWord word, int pageIndex)
@@ -52,87 +46,69 @@ public class Book : MonoBehaviour
         }
     }
 
-
     public void InitialState()
     {
         for (int i = 0; i < pages.Count; i++)
         {
-            pages[i].transform.rotation = Quaternion.identity;
+            pages[i].gameObject.SetActive(false); // Initially hide all pages
         }
-        pages[0].transform.SetAsLastSibling();
+        currentIndex = 0; // Reset index to the first page
+        ShowPageAtIndex(currentIndex);
         backButton.SetActive(false);
-
-    }
-
-    public void RotateForward()
-    {
-        if (rotate == true) { return; }
-        index++;
-        float angle = 180; //in order to rotate the page forward, you need to set the rotation by 180 degrees around the y axis
-        ForwardButtonActions();
-        pages[index].transform.SetAsLastSibling();
-        StartCoroutine(Rotate(angle, true));
-
+        nextButton.SetActive(pages.Count > 1); // Ensure next button is active only if there are more than one page
     }
 
     public void ForwardButtonActions()
     {
-        if (backButton.activeInHierarchy == false)
+        int nextPageIndex = currentIndex + 1;
+        if (nextPageIndex < pages.Count)
         {
-            backButton.SetActive(true); //every time we turn the page forward, the back button should be activated
+            // Hide current page
+            pages[currentIndex].gameObject.SetActive(false);
+            // Update current index to the next page
+            currentIndex = nextPageIndex;
+            // Show the next page
+            pages[currentIndex].gameObject.SetActive(true);
+            // Update button visibility
+            backButton.SetActive(true);
+            nextButton.SetActive(currentIndex < pages.Count - 1);
         }
-        if (index == pages.Count - 1)
-        {
-            nextButton.SetActive(false); //if the page is last then we turn off the forward button
-        }
-    }
-
-    public void RotateBack()
-    {
-        if (rotate == true) { return; }
-        float angle = 0; //in order to rotate the page back, you need to set the rotation to 0 degrees around the y axis
-        pages[index].transform.SetAsLastSibling();
-        BackButtonActions();
-        StartCoroutine(Rotate(angle, false));
     }
 
     public void BackButtonActions()
     {
-        if (nextButton.activeInHierarchy == false)
+        int previousPageIndex = currentIndex - 1;
+        if (previousPageIndex >= 0)
         {
-            nextButton.SetActive(true); //every time we turn the page back, the forward button should be activated
-        }
-        if (index - 1 == -1)
-        {
-            backButton.SetActive(false); //if the page is first then we turn off the back button
+            // Hide current page
+            pages[currentIndex].gameObject.SetActive(false);
+            // Update current index to the previous page
+            currentIndex = previousPageIndex;
+            // Show the previous page
+            pages[currentIndex].gameObject.SetActive(true);
+            // Update button visibility
+            backButton.SetActive(currentIndex > 0);
+            nextButton.SetActive(true);
         }
     }
 
-    IEnumerator Rotate(float angle, bool forward)
+    public void ShowPageAtIndex(int pageIndex)
     {
-        float value = 0f;
-        while (true)
+        if (pageIndex >= 0 && pageIndex < pages.Count)
         {
-            rotate = true;
-            Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
-            value += Time.deltaTime * pageSpeed;
-            pages[index].transform.rotation = Quaternion.Slerp(pages[index].transform.rotation, targetRotation, value); //smoothly turn the page
-            float angle1 = Quaternion.Angle(pages[index].transform.rotation, targetRotation); //calculate the angle between the given angle of rotation and the current angle of rotation
-            if (angle1 < 0.1f)
-            {
-                if (forward == false)
-                {
-                    index--;
-                }
-                rotate = false;
-                break;
-
-            }
-            yield return null;
-
+            // Hide current page
+            pages[currentIndex].gameObject.SetActive(false);
+            // Update current index to the target page
+            currentIndex = pageIndex;
+            // Show the target page
+            pages[currentIndex].gameObject.SetActive(true);
+            // Update button visibility
+            backButton.SetActive(currentIndex > 0);
+            nextButton.SetActive(currentIndex < pages.Count - 1);
+        }
+        else
+        {
+            Debug.Log("Invalid pageIndex: " + pageIndex);
         }
     }
-
-
-
 }

@@ -1,6 +1,8 @@
 using StarterAssets;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerBookComponent : MonoBehaviour
 {
@@ -24,8 +26,8 @@ public class PlayerBookComponent : MonoBehaviour
         if (Input.GetKeyDown(interactKey) && !lockState)
         {
             isOpen = !isOpen;
-            DisablePlayer(isOpen);
-            book.ShowBookVisual(isOpen);
+
+            OpenBook(isOpen);
         }
     }
 
@@ -55,4 +57,16 @@ public class PlayerBookComponent : MonoBehaviour
     }
 
     public bool IsOpen() { return isOpen; }
+
+    internal void OpenBook(bool open)
+    {
+        DisablePlayer(open);
+        book.ShowBookVisual(open);
+    }
+    internal void OpenBook(bool open, int page)
+    {
+        DisablePlayer(open);
+        book.ShowPageAtIndex(page);
+        book.ShowBookVisual(open);
+    }
 }
