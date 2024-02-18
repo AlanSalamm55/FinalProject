@@ -52,12 +52,21 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
 
         bool collidedWithEnglishWord = Physics2D.OverlapCircle(transform.position, 0.1f, LayerMask.GetMask("EnglishWord"));
 
-        if (!collidedWithEnglishWord)
-        {            // Fire the DragEnded event
+        if (collidedWithEnglishWord)
+        {
+            // Make the KurdishWord a child of the EnglishWord
+            Transform englishWordTransform = eventData.pointerCurrentRaycast.gameObject.transform;
+            transform.SetParent(englishWordTransform);
+
+            // Set position with a slight offset
+            Vector3 offset = new Vector3(0f, -100f, 0f); // Adjust the offset as needed
+            transform.localPosition = Vector3.zero + offset;
+            transform.localScale = Vector3.one;
+        }
+        else
+        {
             DragEnded?.Invoke();
         }
-
-        Debug.Log("collides");
     }
 
     public void ShowGuessText()
