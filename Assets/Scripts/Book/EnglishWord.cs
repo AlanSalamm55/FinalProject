@@ -5,6 +5,7 @@ public class EnglishWord : MonoBehaviour
 {
     [SerializeField] private Image illustration;
     [SerializeField] private string rightAnswer;
+
     public Image Illustration
     {
         get { return illustration; }
@@ -21,4 +22,8 @@ public class EnglishWord : MonoBehaviour
             kurdishWord.transform.parent = transform;
         }
     }
+
+    public string RightAnswer() { return rightAnswer; }
+
+
 }

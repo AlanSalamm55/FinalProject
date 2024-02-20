@@ -53,6 +53,7 @@ public class EndOfMap : MonoBehaviour
             if (confirm != null)
             {
                 confirm.gameObject.SetActive(true);
+                confirm.onClick.AddListener(OnConfirmButtonClicked);
             }
 
             bookComponent.OpenBook(true, pageIndex);
@@ -74,4 +75,10 @@ public class EndOfMap : MonoBehaviour
             backBtn.gameObject.SetActive(false); // Hide back button when clicked
         }
     }
+    private void OnConfirmButtonClicked()
+    {
+        Book book = bookComponent.GetBook();
+        book.GetPageByIndex(pageIndex).OnConfirmButtonClicked();
+    }
+
 }

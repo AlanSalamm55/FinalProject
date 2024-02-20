@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -3262874887593402251, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: rightAnswer
-      value: hello
+      value: slaw
       objectReference: {fileID: 0}
     - target: {fileID: -3262874887593402251, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}

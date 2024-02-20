@@ -31,6 +31,8 @@ public class PlayerBookComponent : MonoBehaviour
         }
     }
 
+    public Book GetBook() { return book; }
+
     private void DisablePlayer(bool disable)
     {
         player.enabled = !disable;

@@ -50,5 +50,17 @@ public class Page : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(kurdishWordContainer);
         LayoutRebuilder.ForceRebuildLayoutImmediate(illustrationContainer);
     }
+
+    public void OnConfirmButtonClicked()
+    {
+        // Check all English words for valid Kurdish translations
+        foreach (KurdishWord word in kurdishWords)
+        {
+            bool isValid = word.IsAnswerValid();
+            if (isValid)
+                Debug.Log("English Word: " + word.RightAnswer() + ", Kurdish Word Valid: " + isValid);
+        }
+    }
+
 }
 

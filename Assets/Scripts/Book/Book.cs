@@ -111,9 +111,11 @@ public class Book : MonoBehaviour
             Debug.Log("Invalid pageIndex: " + pageIndex);
         }
     }
-    public void HideButtons(bool hide)
+    public void HideButtons(bool show)
     {
-        backButton.SetActive(hide);
-        nextButton.SetActive(hide);
+        backButton.SetActive(!show);
+        nextButton.SetActive(!show);
     }
+
+    public Page GetPageByIndex(int index) { return pages[index]; }
 }
