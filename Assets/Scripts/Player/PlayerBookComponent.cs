@@ -69,4 +69,6 @@ public class PlayerBookComponent : MonoBehaviour
         book.ShowPageAtIndex(page);
         book.ShowBookVisual(open);
     }
+
+    public void HideButtons(bool hide) { book.HideButtons(hide); }
 }
