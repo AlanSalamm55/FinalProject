@@ -53,14 +53,34 @@ public class Page : MonoBehaviour
 
     public void OnConfirmButtonClicked()
     {
+        bool allValid = true; // Flag to track if all translations are valid
+
         // Check all English words for valid Kurdish translations
         foreach (KurdishWord word in kurdishWords)
         {
             bool isValid = word.IsAnswerValid();
             if (isValid)
-                Debug.Log("English Word: " + word.RightAnswer() + ", Kurdish Word Valid: " + isValid);
+            {
+                PopUpText.Instance.ShowText("English Word: " + word.RightAnswer() + ", Kurdish Word Valid: " + isValid);
+            }
+            else
+            {
+                allValid = false; // Set flag to false if any translation is invalid
+
+            }
+        }
+
+        if (allValid)
+        {
+            PopUpText.Instance.ShowText("All translations are correct!");
+            ConfirmTranslation();
         }
     }
+    void ConfirmTranslation()
+    {
+        // Your confirmation logic here
+    }
+
 
 }
 
