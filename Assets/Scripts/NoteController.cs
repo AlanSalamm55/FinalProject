@@ -29,12 +29,12 @@ public class NoteController : MonoBehaviour, Interactable
 
     public void ShowInteractable()
     {
+        foreach (KurdishWord word in wordsInNote) { word.RefreshGuess(word); }
         if (!isOpenedOnce) { isOpenedOnce = true; }
         noteCanvas.SetActive(true);
         DisablePlayer(false);
         isOpen = true;
         playerBookComponent.LockBookVisual(true); // Lock the book visual when the note is open
-        foreach (KurdishWord word in wordsInNote) { word.RefreshGuess(word); }
     }
 
     public void CloseNote()

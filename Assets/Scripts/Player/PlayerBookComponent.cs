@@ -15,6 +15,7 @@ public class PlayerBookComponent : MonoBehaviour
 
     [Header("Input System")]
     [SerializeField] private KeyCode interactKey;
+    public HashSet<string> kurdishWordList = new HashSet<string>();
 
     private void Start()
     {
@@ -42,7 +43,12 @@ public class PlayerBookComponent : MonoBehaviour
 
     public void AddWordToKurdishVocabulary(KurdishWord kurdishWord, int pageIndex)
     {
-        book.AddWordToNoteBookVisual(kurdishWord, pageIndex);
+
+        if (!kurdishWordList.Contains(kurdishWord.RightAnswer()))
+        {
+            kurdishWordList.Add(kurdishWord.RightAnswer());
+            book.AddWordToNoteBookVisual(kurdishWord, pageIndex);
+        }
     }
 
     public void AddWordToEnglishImages(EnglishWord englishWord, int pageIndex)

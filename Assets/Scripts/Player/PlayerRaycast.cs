@@ -69,10 +69,12 @@ public class PlayerRaycast : MonoBehaviour
     {
         if (interactable != null && Input.GetKeyDown(interactKey) && !bookComp.IsOpen())
         {
+
             if (!interactable.IsOpenedOnce())
             {
                 HandleWordInteractions();
             }
+
             interactable.ShowInteractable();
         }
     }

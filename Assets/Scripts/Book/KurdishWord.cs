@@ -36,8 +36,8 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
 
         // Subscribe to the onValueChanged event of guessInputField
         guessInputField.onValueChanged.AddListener(OnGuessInputValueChanged);
-        guessText.gameObject.SetActive(false);
     }
+
 
     // Method to handle the value changed event of guessInputField
     private void OnGuessInputValueChanged(string newValue)
@@ -57,6 +57,7 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
             guessText.gameObject.SetActive(true);
         }
     }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -148,8 +149,11 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
         guessInputField.gameObject.SetActive(true);
         guessInputField.Select();
         guessInputField.ActivateInputField();
-
+        guessText.gameObject.SetActive(false);
     }
 
     public string RightAnswer() { return rightAnswer; }
+
+
+
 }
