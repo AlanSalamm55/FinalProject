@@ -3,40 +3,70 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
     public event Action DragEnded;
-
     [SerializeField] private Image image;
     [SerializeField] private TMP_InputField guessInputField;
     [SerializeField] private string rightAnswer;
     [SerializeField] private EnglishWord englishWord;
     [SerializeField] private Image checkImg;
-    [SerializeField] Sprite[] checkState;
+    [SerializeField] private Sprite[] checkState;
+    [SerializeField] private TMP_Text guessText;
     private bool isDragging = false;
     private Vector2 pointerOffset;
     private RectTransform rectTransform;
     private Transform parent;
     private bool isDraggingAllowed = true;
+
+    private static Dictionary<string, string> guessStrings = new Dictionary<string, string>();
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
     }
+
     private void Start()
     {
         parent = transform.parent;
         checkImg.gameObject.SetActive(false);
         isDraggingAllowed = true;
+
+        // Subscribe to the onValueChanged event of guessInputField
+        guessInputField.onValueChanged.AddListener(OnGuessInputValueChanged);
+        guessText.gameObject.SetActive(false);
+    }
+
+    // Method to handle the value changed event of guessInputField
+    private void OnGuessInputValueChanged(string newValue)
+    {
+        guessStrings[rightAnswer] = newValue;
+        if (guessStrings[rightAnswer] != null)
+        {
+            guessText.text = guessStrings[rightAnswer];
+        }
+    }
+
+    public void RefreshGuess(KurdishWord word)
+    {
+        if (guessStrings.ContainsKey(rightAnswer) && guessStrings[rightAnswer] != null)
+        {
+            guessText.text = guessStrings[rightAnswer];
+            guessText.gameObject.SetActive(true);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
+
             guessInputField.gameObject.SetActive(true);
             guessInputField.Select();
             guessInputField.ActivateInputField();
+
         }
         else if (eventData.button == PointerEventData.InputButton.Left)
         {
@@ -74,7 +104,6 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
             transform.SetParent(englishWordTransform);
             if (collideEngWord != null)
             {
-                Debug.Log("this is called");
                 englishWord = collideEngWord;
             }
             // Set position with a slight offset
@@ -87,7 +116,6 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
 
     }
 
-
     public EnglishWord GetEnglishhWord() { return englishWord; }
 
     public bool IsAnswerValid()
@@ -99,6 +127,9 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
             if (isValid)
             {
                 isDraggingAllowed = false; // Lock dragging only if the answer is correct
+                guessInputField.text = rightAnswer; // Set the text of the guess input field to the right answer
+                guessInputField.text = rightAnswer;
+                guessInputField.interactable = false;
             }
             checkImg.sprite = isValid ? checkState[0] : checkState[1];
         }
@@ -111,12 +142,14 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
         return isValid;
     }
 
-
     public void ShowGuessText()
     {
+
         guessInputField.gameObject.SetActive(true);
+        guessInputField.Select();
+        guessInputField.ActivateInputField();
+
     }
+
     public string RightAnswer() { return rightAnswer; }
-
-
 }

@@ -11,6 +11,10 @@ public class EndOfMap : MonoBehaviour
     [SerializeField] private Button confirm;
     private PlayerBookComponent bookComponent;
     private bool imagesAdded = false;
+    private int maxAttempts = 3;
+    private int remainingAttempts;
+    private bool isAnswersCorrect = false;
+    [SerializeField] private Collider collider;
 
     private void Start()
     {
@@ -24,6 +28,12 @@ public class EndOfMap : MonoBehaviour
         {
             confirm.gameObject.SetActive(false);
         }
+
+        // Get the collider component
+        collider = GetComponent<Collider>();
+
+        // Initialize remaining attempts
+        remainingAttempts = maxAttempts;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,6 +75,11 @@ public class EndOfMap : MonoBehaviour
 
     private void OnBackButtonClicked()
     {
+        CloseBookAndReset();
+    }
+
+    private void CloseBookAndReset()
+    {
         // Unlock the book and close it
         if (bookComponent != null)
         {
@@ -75,10 +90,34 @@ public class EndOfMap : MonoBehaviour
             backBtn.gameObject.SetActive(false); // Hide back button when clicked
         }
     }
+
     private void OnConfirmButtonClicked()
     {
-        Book book = bookComponent.GetBook();
-        book.GetPageByIndex(pageIndex).OnConfirmButtonClicked();
-    }
+        if (isAnswersCorrect || remainingAttempts <= 0)
+        {
+            // If answers are correct or no attempts left, remove the collider
+            collider.enabled = false;
+            PopUpText.Instance.ShowText(isAnswersCorrect ? "Congratulations! You answered correctly!" : "You have reached the maximum attempts.");
+            CloseBookAndReset(); // Close the book
+            return;
+        }
 
+        Book book = bookComponent.GetBook();
+        isAnswersCorrect = book.GetPageByIndex(pageIndex).OnConfirmButtonClicked();
+
+        if (!isAnswersCorrect)
+        {
+            remainingAttempts--;
+            string message = "Incorrect answer. Please try again. Attempts left: " + remainingAttempts;
+            PopUpText.Instance.ShowText(message);
+
+            if (remainingAttempts <= 0)
+            {
+                // If no attempts left, remove the collider
+                collider.enabled = false;
+                PopUpText.Instance.ShowText("You have reached the maximum attempts.");
+                CloseBookAndReset(); // Close the book
+            }
+        }
+    }
 }

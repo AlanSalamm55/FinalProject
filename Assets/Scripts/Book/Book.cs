@@ -46,6 +46,7 @@ public class Book : MonoBehaviour
         }
     }
 
+
     public void InitialState()
     {
         for (int i = 0; i < pages.Count; i++)
