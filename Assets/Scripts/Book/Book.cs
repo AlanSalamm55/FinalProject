@@ -119,4 +119,11 @@ public class Book : MonoBehaviour
     }
 
     public Page GetPageByIndex(int index) { return pages[index]; }
+
+    public bool AreWordCountsEqual(int index)
+    {
+        return pages[index].KurdishWords.Count == pages[index].EnglishWords.Count;
+    }
+
+
 }

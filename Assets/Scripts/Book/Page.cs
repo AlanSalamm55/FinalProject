@@ -51,31 +51,36 @@ public class Page : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(illustrationContainer);
     }
 
-    public bool OnConfirmButtonClicked()
+    public int OnConfirmButtonClicked()
     {
-        bool allValid = true; // Flag to track if all translations are valid
+        bool hasMistake = false; // Flag for mistake
+        bool hasIncompleteTranslation = false; // Flag fpr translation
 
-        // Check all English words for valid Kurdish translations
+        // Check all Kurdish words for valid translations
         foreach (KurdishWord word in kurdishWords)
         {
-            bool isValid = word.IsAnswerValid();
-            if (!isValid)
+            int validity = word.IsAnswerValid();
+            if (validity == 2) // No English word
             {
-                allValid = false; // Set flag to false if any translation is invalid
+                hasIncompleteTranslation = true;
+            }
+            else if (validity == 1) // Wrong answer
+            {
+                hasMistake = true;
             }
         }
 
-        if (allValid)
+        if (hasMistake)
         {
-            ConfirmTranslation();
+            return 1;
         }
 
-        return allValid; // Return whether all translations are valid
-    }
+        if (hasIncompleteTranslation)
+        {
+            return 2;
+        }
 
-    void ConfirmTranslation()
-    {
-        // Your confirmation logic here
+        return 0; // All translations are correct
     }
 
 

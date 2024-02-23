@@ -119,29 +119,37 @@ public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
 
     public EnglishWord GetEnglishhWord() { return englishWord; }
 
-    public bool IsAnswerValid()
+    public int IsAnswerValid()
     {
-        bool isValid = false;
-        if (englishWord)
+        if (!englishWord)
         {
-            isValid = rightAnswer == englishWord.RightAnswer();
-            if (isValid)
-            {
-                isDraggingAllowed = false; // Lock dragging only if the answer is correct
-                guessInputField.text = rightAnswer; // Set the text of the guess input field to the right answer
-                guessInputField.text = rightAnswer;
-                guessInputField.interactable = false;
-            }
-            checkImg.sprite = isValid ? checkState[0] : checkState[1];
+            checkImg.sprite = checkState[2]; // no answer
+            checkImg.gameObject.SetActive(true); 
+            return 2; 
+
         }
         else
         {
-            Debug.Log("no English word for this");
-            checkImg.sprite = checkState[2]; // Index 2 for no English word
+            bool isValid = rightAnswer == englishWord.RightAnswer();
+            if (isValid)
+            {
+                isDraggingAllowed = false; // Lock dragging only if the answer is correct
+                guessInputField.text = rightAnswer; 
+                guessInputField.text = rightAnswer;
+                guessInputField.interactable = false;
+                checkImg.sprite = checkState[0]; // Correct answer
+                checkImg.gameObject.SetActive(true); 
+                return 0;
+            }
+            else
+            {
+                checkImg.sprite = checkState[1]; // Wrong answer
+                checkImg.gameObject.SetActive(true); 
+                return 1;
+            }
         }
-        checkImg.gameObject.SetActive(true); // Show checkImg
-        return isValid;
     }
+
 
     public void ShowGuessText()
     {

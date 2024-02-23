@@ -90,7 +90,6 @@ public class PlayerRaycast : MonoBehaviour
                 bookComp.AddWordToKurdishVocabulary(word, pageIndex);
             }
             PopUpText.Instance.ShowText("new vocab added to ur book");
-
         }
     }
 

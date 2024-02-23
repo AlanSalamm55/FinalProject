@@ -1,4 +1,5 @@
 using StarterAssets;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class EndOfMap : MonoBehaviour
     private int remainingAttempts;
     private bool isAnswersCorrect = false;
     [SerializeField] private Collider collider;
+    private bool isButtonConfirmClickable = true; // Flag to control button clickability
 
     private void Start()
     {
@@ -91,33 +93,59 @@ public class EndOfMap : MonoBehaviour
         }
     }
 
+    private IEnumerator WaitForButtonClick()
+    {
+        // Disable button clickability
+        isButtonConfirmClickable = false;
+        // Wait for 1 second
+        yield return new WaitForSeconds(1f);
+        // Enable button clickability
+        isButtonConfirmClickable = true;
+    }
+
     private void OnConfirmButtonClicked()
     {
-        if (isAnswersCorrect || remainingAttempts <= 0)
+        // If button is not clickable, return
+        if (!isButtonConfirmClickable)
         {
-            // If answers are correct or no attempts left, remove the collider
-            collider.enabled = false;
-            PopUpText.Instance.ShowText(isAnswersCorrect ? "Congratulations! You answered correctly!" : "You have reached the maximum attempts.");
-            CloseBookAndReset(); // Close the book
             return;
         }
 
         Book book = bookComponent.GetBook();
-        isAnswersCorrect = book.GetPageByIndex(pageIndex).OnConfirmButtonClicked();
 
-        if (!isAnswersCorrect)
+        if (!book.AreWordCountsEqual(pageIndex))
         {
-            remainingAttempts--;
-            string message = "Incorrect answer. Please try again. Attempts left: " + remainingAttempts;
-            PopUpText.Instance.ShowText(message);
+            PopUpText.Instance.ShowText("Turn back and find all the Kurdish words in this map.");
+            return;
+        }
 
-            if (remainingAttempts <= 0)
-            {
-                // If no attempts left, remove the collider
+        int validation = book.GetPageByIndex(pageIndex).OnConfirmButtonClicked();
+
+        switch (validation)
+        {
+            case 0: // All correct
                 collider.enabled = false;
-                PopUpText.Instance.ShowText("You have reached the maximum attempts.");
+                PopUpText.Instance.ShowText("Congratulations! You answered correctly!");
                 CloseBookAndReset(); // Close the book
-            }
+                break;
+            case 1: // At least one mistake
+                remainingAttempts--;
+                string message = "Incorrect answer. Please try again. Attempts left: " + remainingAttempts;
+                PopUpText.Instance.ShowText(message);
+
+                if (remainingAttempts <= 0)
+                {
+                    collider.enabled = false;
+                    PopUpText.Instance.ShowText("You have reached the maximum attempts.");
+                    CloseBookAndReset(); // Close the book
+                }
+                break;
+            case 2: // Not all points used
+                PopUpText.Instance.ShowText("Use all points.");
+                break;
+            default:
+                break;
         }
     }
+
 }
