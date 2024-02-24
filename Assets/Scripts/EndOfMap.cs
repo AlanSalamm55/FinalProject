@@ -111,6 +111,8 @@ public class EndOfMap : MonoBehaviour
             return;
         }
 
+        StartCoroutine(EnableButtonAfterDelay()); // Start the timer coroutine
+
         Book book = bookComponent.GetBook();
 
         if (!book.AreWordCountsEqual(pageIndex))
@@ -148,4 +150,13 @@ public class EndOfMap : MonoBehaviour
         }
     }
 
+    private IEnumerator EnableButtonAfterDelay()
+    {
+        // Disable button clickability
+        isButtonConfirmClickable = false;
+        // Wait for 1 second
+        yield return new WaitForSeconds(1f);
+        // Enable button clickability
+        isButtonConfirmClickable = true;
+    }
 }
