@@ -1,20 +1,10 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Word : ScriptableObject
+public class Word : MonoBehaviour
 {
-    //make sprite later maybe
-    [SerializeField] private string kurdishWord;
-    [SerializeField] private string englishWord;
+    [SerializeField] protected string rightAnswer;
+    [SerializeField] protected Image illustration;
 
-    // getter for Kurdish word
-    public string KurdishWord
-    {
-        get { return kurdishWord; }
-    }
-
-    // getter for Englishword
-    public string EnglishWord
-    {
-        get { return englishWord; }
-    }
 }

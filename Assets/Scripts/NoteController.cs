@@ -13,7 +13,7 @@ public class NoteController : MonoBehaviour, Interactable
     private PlayerBookComponent playerBookComponent; // Reference to PlayerBookComponent
 
     public event Action onClosed;
-    [SerializeField] private List<KurdishWord> wordsInNote;
+    [SerializeField] private List<Word> wordsInNote;
 
     [Header("Input")]
     [SerializeField] private KeyCode closeKey;
@@ -72,7 +72,7 @@ public class NoteController : MonoBehaviour, Interactable
         playerBookComponent = player.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>();
     }
 
-    public List<KurdishWord> GetWordsInInteractable()
+    public List<Word> GetWordsInInteractable()
     {
         return wordsInNote;
     }
@@ -84,5 +84,9 @@ public class NoteController : MonoBehaviour, Interactable
 
     public int GetPageIndex() { return pageIndex; }
 
+    List<Word> Interactable.GetWordsInInteractable()
+    {
 
+        return wordsInNote;
+    }
 }

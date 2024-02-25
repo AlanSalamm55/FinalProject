@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnglishWord : MonoBehaviour
+public class EnglishWord : Word
 {
-    [SerializeField] private Image illustration;
-    [SerializeField] private string rightAnswer;
 
     public Image Illustration
     {

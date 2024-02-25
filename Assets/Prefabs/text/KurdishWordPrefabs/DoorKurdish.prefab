@@ -1,17 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &594713716743497717
+--- !u!1001 &5841812507290591518
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 560632402697896547, guid: e56bebcd33cf28f4a80c0d72837cddc8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 843379035860718479, guid: e56bebcd33cf28f4a80c0d72837cddc8,
         type: 3}
       propertyPath: m_Pivot.x
@@ -120,28 +115,33 @@ PrefabInstance:
     - target: {fileID: 1568336388361455289, guid: e56bebcd33cf28f4a80c0d72837cddc8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4493605634313684828, guid: e56bebcd33cf28f4a80c0d72837cddc8,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 87a3a14f05c05d04292dc407b9982409,
+      objectReference: {fileID: 21300000, guid: 9c4ec449637c4244a90b89def8998d45,
         type: 3}
     - target: {fileID: 4493605634313684828, guid: e56bebcd33cf28f4a80c0d72837cddc8,
         type: 3}
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5270871521884260964, guid: e56bebcd33cf28f4a80c0d72837cddc8,
+    - target: {fileID: 5556780190977721272, guid: e56bebcd33cf28f4a80c0d72837cddc8,
         type: 3}
-      propertyPath: rightAnswer
-      value: slaw3
+      propertyPath: m_AnchoredPosition.y
+      value: 106
       objectReference: {fileID: 0}
     - target: {fileID: 6145059826657745763, guid: e56bebcd33cf28f4a80c0d72837cddc8,
         type: 3}
       propertyPath: m_Name
-      value: KurdishText 5
+      value: DoorKurdish
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634746663856017406, guid: e56bebcd33cf28f4a80c0d72837cddc8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -105
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e56bebcd33cf28f4a80c0d72837cddc8, type: 3}

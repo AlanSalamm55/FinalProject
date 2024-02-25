@@ -5,12 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
-public class KurdishWord : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
+public class KurdishWord : Word, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
     public event Action DragEnded;
-    [SerializeField] private Image image;
     [SerializeField] private TMP_InputField guessInputField;
-    [SerializeField] private string rightAnswer;
     [SerializeField] private EnglishWord englishWord;
     [SerializeField] private Image checkImg;
     [SerializeField] private Sprite[] checkState;

@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EndOfMap : MonoBehaviour
+public class EndOfMap : MonoBehaviour, Interactable
 {
-    [SerializeField] private List<EnglishWord> englishWords;
+    [SerializeField] private List<Word> englishWords;
     [SerializeField] private int pageIndex;
     [SerializeField] private Button backBtn;
     [SerializeField] private Button confirm;
     private PlayerBookComponent bookComponent;
-    private bool imagesAdded = false;
+    private bool isOpenedOnce = false;
     private int maxAttempts = 3;
     private int remainingAttempts;
-    private bool isAnswersCorrect = false;
     [SerializeField] private Collider collider;
     private bool isButtonConfirmClickable = true; // Flag to control button clickability
+    [SerializeField] private Sprite crosshairImg;
 
     private void Start()
     {
@@ -38,42 +38,7 @@ public class EndOfMap : MonoBehaviour
         remainingAttempts = maxAttempts;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Find the book component on the player object
-        FirstPersonController player = other.GetComponent<FirstPersonController>();
-        bookComponent = player.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>();
 
-        if (bookComponent != null)
-        {
-            if (!imagesAdded)
-            {
-                // Add words to the book
-                foreach (EnglishWord word in englishWords)
-                {
-                    bookComponent.AddWordToEnglishImages(word, pageIndex);
-                }
-                imagesAdded = true; // Set to true once images are added
-            }
-            // Show buttons and lock book
-            if (backBtn != null)
-            {
-                backBtn.gameObject.SetActive(true);
-                backBtn.onClick.AddListener(OnBackButtonClicked);
-            }
-
-            if (confirm != null)
-            {
-                confirm.gameObject.SetActive(true);
-                confirm.onClick.AddListener(OnConfirmButtonClicked);
-            }
-
-            bookComponent.OpenBook(true, pageIndex);
-            bookComponent.HideButtons(true);
-            // Lock the book
-            bookComponent.LockBookVisual(true);
-        }
-    }
 
     private void OnBackButtonClicked()
     {
@@ -93,15 +58,6 @@ public class EndOfMap : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForButtonClick()
-    {
-        // Disable button clickability
-        isButtonConfirmClickable = false;
-        // Wait for 1 second
-        yield return new WaitForSeconds(1f);
-        // Enable button clickability
-        isButtonConfirmClickable = true;
-    }
 
     private void OnConfirmButtonClicked()
     {
@@ -158,5 +114,57 @@ public class EndOfMap : MonoBehaviour
         yield return new WaitForSeconds(1f);
         // Enable button clickability
         isButtonConfirmClickable = true;
+    }
+
+    public bool IsOpenedOnce()
+    {
+        return isOpenedOnce;
+    }
+
+    public void ShowInteractable()
+    {
+
+        if (bookComponent != null)
+        {
+
+            // Show buttons and lock book
+            if (backBtn != null)
+            {
+                backBtn.gameObject.SetActive(true);
+                backBtn.onClick.AddListener(OnBackButtonClicked);
+            }
+
+            if (confirm != null)
+            {
+                confirm.gameObject.SetActive(true);
+                confirm.onClick.AddListener(OnConfirmButtonClicked);
+            }
+
+            bookComponent.OpenBook(true, pageIndex);
+            bookComponent.HideButtons(true);
+            // Lock the book
+            bookComponent.LockBookVisual(true);
+        }
+    }
+
+    public void SetInteractor(FirstPersonController player)
+    {
+        // Find the book component on the player object
+        bookComponent = player.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>();
+    }
+
+    public List<Word> GetWordsInInteractable()
+    {
+        return englishWords;
+    }
+
+    public Sprite GetCrosshairImg()
+    {
+        return crosshairImg;
+    }
+
+    public int GetPageIndex()
+    {
+        return pageIndex;
     }
 }

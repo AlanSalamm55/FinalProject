@@ -52,7 +52,7 @@ public class PlayerRaycast : MonoBehaviour
 
     private void HandleRaycastHit(RaycastHit hit)
     {
-        var readableItem = hit.collider.GetComponent<NoteController>();
+        var readableItem = hit.collider.GetComponent<Interactable>();
         if (readableItem != null)
         {
             interactable = readableItem;
@@ -81,17 +81,38 @@ public class PlayerRaycast : MonoBehaviour
 
     private void HandleWordInteractions()
     {
-        List<KurdishWord> words = interactable.GetWordsInInteractable();
+        List<Word> words = interactable.GetWordsInInteractable();
         int pageIndex = interactable.GetPageIndex();
-        if (words != null)
+
+        if (words == null || words.Count == 0)
+            return;
+
+        switch (words[0])
         {
-            foreach (KurdishWord word in words)
-            {
-                bookComp.AddWordToKurdishVocabulary(word, pageIndex);
-            }
-            PopUpText.Instance.ShowText("new vocab added to ur book");
+            case KurdishWord:
+                // All words in the list are Kurdish words
+                foreach (KurdishWord kurdishWord in words)
+                {
+                    bookComp.AddWordToKurdishVocabulary(kurdishWord, pageIndex);
+                }
+                PopUpText.Instance.ShowText("All Kurdish vocab added to your book, page: " + pageIndex);
+                break;
+
+            case EnglishWord:
+                // All words in the list are English words
+                foreach (EnglishWord englishWord in words)
+                {
+                    bookComp.AddWordToEnglishImages(englishWord, pageIndex);
+                }
+                PopUpText.Instance.ShowText("find the meaning of these illustrations: ");
+                break;
+
+            default:
+                // Handle other types of words if needed
+                break;
         }
     }
+
 
 
 
