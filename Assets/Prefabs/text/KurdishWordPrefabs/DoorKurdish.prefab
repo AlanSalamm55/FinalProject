@@ -128,6 +128,11 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5270871521884260964, guid: e56bebcd33cf28f4a80c0d72837cddc8,
+        type: 3}
+      propertyPath: rightAnswer
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 5556780190977721272, guid: e56bebcd33cf28f4a80c0d72837cddc8,
         type: 3}
       propertyPath: m_AnchoredPosition.y

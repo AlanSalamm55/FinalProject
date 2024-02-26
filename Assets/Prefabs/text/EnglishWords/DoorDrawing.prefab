@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -3262874887593402251, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: rightAnswer
-      value: slaw
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: -3262874887593402251, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
@@ -126,7 +126,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a0c11c6da026f35488a3ddf5a7f818d0,
+      objectReference: {fileID: 21300000, guid: 089fa007bfe5d254b9f6a682a70c2526,
         type: 3}
     - target: {fileID: 1099866760969098762, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
@@ -137,7 +137,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: b58befec64fd6ee43a11075f6be7e815, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1099866760969098762, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: m_RaycastTarget
