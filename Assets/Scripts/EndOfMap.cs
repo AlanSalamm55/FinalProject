@@ -123,6 +123,7 @@ public class EndOfMap : MonoBehaviour, Interactable
 
     public void ShowInteractable()
     {
+        if (!isOpenedOnce) { isOpenedOnce = true; }
 
         if (bookComponent != null)
         {
