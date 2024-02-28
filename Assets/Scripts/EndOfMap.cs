@@ -1,4 +1,5 @@
 using StarterAssets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class EndOfMap : MonoBehaviour, Interactable
     [SerializeField] private Collider collider;
     private bool isButtonConfirmClickable = true; // Flag to control button clickability
     [SerializeField] private Sprite crosshairImg;
+
+    public event Action onConfirmClick;
 
     private void Start()
     {
@@ -85,10 +88,13 @@ public class EndOfMap : MonoBehaviour, Interactable
                 collider.enabled = false;
                 PopUpText.Instance.ShowText("Congratulations! You answered correctly!");
                 CloseBookAndReset(); // Close the book
+                onConfirmClick?.Invoke();
+
                 break;
             case 1: // At least one mistake
                 remainingAttempts--;
                 string message = "Incorrect answer. Please try again. Attempts left: " + remainingAttempts;
+                onConfirmClick?.Invoke();
                 PopUpText.Instance.ShowText(message);
 
                 if (remainingAttempts <= 0)
@@ -96,6 +102,7 @@ public class EndOfMap : MonoBehaviour, Interactable
                     collider.enabled = false;
                     PopUpText.Instance.ShowText("You have reached the maximum attempts.");
                     CloseBookAndReset(); // Close the book
+                    onConfirmClick?.Invoke();
                 }
                 break;
             case 2: // Not all points used
