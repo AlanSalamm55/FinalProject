@@ -736,9 +736,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5620f479009a06243a7d05a63f6ab446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 4493605634313684828}
-  guessInputField: {fileID: 4738608003439622237}
   rightAnswer: 
+  illustration: {fileID: 0}
+  guessInputField: {fileID: 4738608003439622237}
   englishWord: {fileID: 0}
   checkImg: {fileID: 8322057955556803912}
   checkState:

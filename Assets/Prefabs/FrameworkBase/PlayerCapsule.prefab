@@ -87,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textPrefab: {fileID: 8505166956681172919, guid: 2825378a1e32fae46a4c62d8dc12fb22,
     type: 3}
+  imagePrefab: {fileID: 0}
   displayTime: 5
   fadeDuration: 1
 --- !u!1 &4135013735270702863

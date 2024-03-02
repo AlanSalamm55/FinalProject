@@ -1,4 +1,5 @@
 using StarterAssets;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class StartScreen : MonoBehaviour
     [SerializeField] RectTransform canvas;
 
     [SerializeField] private float playerMoveTime = 1.0f;
+
+    public event Action onGameStart;
 
     private void Start()
     {
@@ -45,6 +48,8 @@ public class StartScreen : MonoBehaviour
             playerController.enabled = true;
         });
         LeanTween.rotate(playerController.gameObject, startPosition.eulerAngles, playerMoveTime).setEaseInOutQuad();
+
+        onGameStart?.Invoke();
     }
 
     public void QuitGame()
