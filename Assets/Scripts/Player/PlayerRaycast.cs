@@ -1,5 +1,6 @@
 
 using StarterAssets;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -112,7 +113,7 @@ public class PlayerRaycast : MonoBehaviour
                 {
                     bookComp.AddWordToEnglishImages(englishWord, pageIndex);
                 }
-                PopUpText.Instance.ShowText("find the meaning of these illustrations: ");
+                PopUpText.Instance.ShowText("match words to illustrations: ");
                 break;
 
             default:
@@ -136,6 +137,8 @@ public class PlayerRaycast : MonoBehaviour
 
     private void SetCrossHairImg(Sprite img) { crosshair.sprite = img; }
 
-
-
+    internal void ShowCrossHair(bool hide)
+    {
+        crosshair.gameObject.SetActive(hide);
+    }
 }

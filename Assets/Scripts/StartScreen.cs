@@ -26,6 +26,8 @@ public class StartScreen : MonoBehaviour
 
         playerController.enabled = false;
         playerController.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>().LockBookVisual(true);
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerRaycast>().ShowCrossHair(false);
+
         playerController.transform.position = transform.position;
         playerController.transform.rotation = transform.rotation;
 
@@ -38,8 +40,8 @@ public class StartScreen : MonoBehaviour
     {
         canvas.gameObject.SetActive(false);
         playerController.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>().LockBookVisual(false);
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerRaycast>().ShowCrossHair(true);
 
-        // Tween player movement from current position to start position
         LeanTween.move(playerController.gameObject, startPosition.position, playerMoveTime).setEaseInOutQuad().setOnComplete(() =>
         {
             // Hide cursor and lock it
