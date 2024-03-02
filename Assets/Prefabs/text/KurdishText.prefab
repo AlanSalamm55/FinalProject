@@ -742,9 +742,9 @@ MonoBehaviour:
   englishWord: {fileID: 0}
   checkImg: {fileID: 8322057955556803912}
   checkState:
-  - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 21300000, guid: ff7bfa7addf40784d86f62b8e4a034a6, type: 3}
-  - {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
+  - {fileID: 21300000, guid: c0cdc8eacfa9a1e40aeb23c81cf6fadb, type: 3}
+  - {fileID: 21300000, guid: f17f9147db04cab4f9a438798293eb53, type: 3}
+  - {fileID: 21300000, guid: 823c0250723f01449b3ceb7602799f2e, type: 3}
   guessText: {fileID: 2991631277101094053}
 --- !u!61 &7139365016783190923
 BoxCollider2D:

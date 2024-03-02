@@ -25,7 +25,7 @@ public class StartScreen : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
 
         playerController.enabled = false;
-
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>().LockBookVisual(true);
         playerController.transform.position = transform.position;
         playerController.transform.rotation = transform.rotation;
 
@@ -37,6 +37,7 @@ public class StartScreen : MonoBehaviour
     public void StartGame()
     {
         canvas.gameObject.SetActive(false);
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>().LockBookVisual(false);
 
         // Tween player movement from current position to start position
         LeanTween.move(playerController.gameObject, startPosition.position, playerMoveTime).setEaseInOutQuad().setOnComplete(() =>

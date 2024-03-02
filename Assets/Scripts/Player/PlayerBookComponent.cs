@@ -24,7 +24,6 @@ public class PlayerBookComponent : MonoBehaviour
         if (Input.GetKeyDown(interactKey) && !lockState)
         {
             isOpen = !isOpen;
-
             OpenBook(isOpen);
         }
     }

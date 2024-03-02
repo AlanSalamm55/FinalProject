@@ -105,7 +105,7 @@ public class EndOfMap : MonoBehaviour, Interactable
                 }
                 break;
             case 2: // Not all points used
-                PopUpText.Instance.ShowText("Use all points.");
+                PopUpText.Instance.ShowText("Use all words.");
                 break;
             default:
                 break;
