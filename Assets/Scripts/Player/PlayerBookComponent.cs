@@ -17,10 +17,7 @@ public class PlayerBookComponent : MonoBehaviour
     [SerializeField] private KeyCode interactKey;
     public HashSet<string> kurdishWordList = new HashSet<string>();
 
-    private void Start()
-    {
 
-    }
 
     void Update()
     {
@@ -62,6 +59,7 @@ public class PlayerBookComponent : MonoBehaviour
     public void LockBookVisual(bool lockState)
     {
         this.lockState = lockState;
+        book.SetNavigationEnabled(!lockState);
     }
 
     public bool IsOpen() { return isOpen; }
@@ -78,5 +76,9 @@ public class PlayerBookComponent : MonoBehaviour
         book.ShowBookVisual(open);
     }
 
-    public void HideButtons(bool hide) { book.HideButtons(hide); }
+    public void HideButtons(bool hide)
+    {
+        book.HideButtons(hide);
+        book.HideCloseText(hide);
+    }
 }

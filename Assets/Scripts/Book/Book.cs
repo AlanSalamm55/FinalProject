@@ -8,6 +8,9 @@ public class Book : MonoBehaviour
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject BookVisual;
+    [SerializeField] private GameObject closeText;
+
+    private bool navigationEnabled = true; // Boolean to control navigation with arrow keys
 
     private int currentIndex = 0;
 
@@ -15,6 +18,28 @@ public class Book : MonoBehaviour
     {
         BookVisual.SetActive(false);
         InitialState();
+    }
+
+    private void Update()
+    {
+        // Check for keyboard input if navigation is enabled
+        if (navigationEnabled)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                ForwardButtonActions();
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                BackButtonActions();
+            }
+        }
+    }
+
+    // Setter for navigationEnabled
+    public void SetNavigationEnabled(bool enabled)
+    {
+        navigationEnabled = enabled;
     }
 
     public void ShowBookVisual(bool show)
@@ -45,7 +70,6 @@ public class Book : MonoBehaviour
             Debug.Log("Invalid pageIndex: " + pageIndex);
         }
     }
-
 
     public void InitialState()
     {
@@ -125,5 +149,5 @@ public class Book : MonoBehaviour
         return pages[index].KurdishWords.Count == pages[index].EnglishWords.Count;
     }
 
-
+    public void HideCloseText(bool show) { closeText.gameObject.SetActive(!show); }
 }

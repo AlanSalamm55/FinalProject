@@ -45,10 +45,10 @@ public class EndOfMap : MonoBehaviour, Interactable
 
     private void OnBackButtonClicked()
     {
-        CloseBookAndReset();
+        Close();
     }
 
-    private void CloseBookAndReset()
+    public void Close()
     {
         // Unlock the book and close it
         if (bookComponent != null)
@@ -60,7 +60,6 @@ public class EndOfMap : MonoBehaviour, Interactable
             backBtn.gameObject.SetActive(false); // Hide back button when clicked
         }
     }
-
 
     private void OnConfirmButtonClicked()
     {
@@ -87,7 +86,7 @@ public class EndOfMap : MonoBehaviour, Interactable
             case 0: // All correct
                 collider.enabled = false;
                 PopUpText.Instance.ShowText("Congratulations! You answered correctly!");
-                CloseBookAndReset(); // Close the book
+                Close(); // Close the book
                 onConfirmClick?.Invoke();
 
                 break;
@@ -101,7 +100,7 @@ public class EndOfMap : MonoBehaviour, Interactable
                 {
                     collider.enabled = false;
                     PopUpText.Instance.ShowText("You have reached the maximum attempts.");
-                    CloseBookAndReset(); // Close the book
+                    Close(); // Close the book
                     onConfirmClick?.Invoke();
                 }
                 break;
@@ -175,4 +174,13 @@ public class EndOfMap : MonoBehaviour, Interactable
     {
         return pageIndex;
     }
+
+    public bool IsOpen()
+    {
+        if (bookComponent)
+            return bookComponent.IsOpen();
+        else
+            return false;
+    }
+
 }

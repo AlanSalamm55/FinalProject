@@ -16,6 +16,7 @@ public class PlayerRaycast : MonoBehaviour
     [Header("Raycast")]
     private Image crosshair;
     [SerializeField] private Sprite crosshairBase;
+    [SerializeField] private Image eKey;
 
     [Header("Input System")]
     [SerializeField] private KeyCode interactKey;
@@ -33,7 +34,7 @@ public class PlayerRaycast : MonoBehaviour
             crosshair.sprite = crosshairBase;
         }
 
-
+        eKey.gameObject.SetActive(false);
     }
 
     void Update()
@@ -58,6 +59,7 @@ public class PlayerRaycast : MonoBehaviour
             interactable = readableItem;
             interactable.SetInteractor(player);
             crosshair.sprite = interactable.GetCrosshairImg();
+            eKey.gameObject.SetActive(true);
         }
         else
         {
@@ -69,15 +71,21 @@ public class PlayerRaycast : MonoBehaviour
     {
         if (interactable != null && Input.GetKeyDown(interactKey) && !bookComp.IsOpen())
         {
-
-            if (!interactable.IsOpenedOnce())
+            if (interactable.IsOpen())
             {
-                HandleWordInteractions();
+                interactable.Close();
             }
-
-            interactable.ShowInteractable();
+            else
+            {
+                if (!interactable.IsOpenedOnce())
+                {
+                    HandleWordInteractions();
+                }
+                interactable.ShowInteractable();
+            }
         }
     }
+
 
     private void HandleWordInteractions()
     {
@@ -121,6 +129,7 @@ public class PlayerRaycast : MonoBehaviour
         if (interactable != null)
         {
             SetCrossHairImg(crosshairBase);
+            eKey.gameObject.SetActive(false);
             interactable = null;
         }
     }

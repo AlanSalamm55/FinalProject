@@ -13,4 +13,8 @@ public interface Interactable
     public Sprite GetCrosshairImg();
     public int GetPageIndex();
 
+    public bool IsOpen();
+
+    public void Close();
+
 }

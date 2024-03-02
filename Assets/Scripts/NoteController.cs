@@ -15,9 +15,6 @@ public class NoteController : MonoBehaviour, Interactable
     public event Action onClosed;
     [SerializeField] private List<Word> wordsInNote;
 
-    [Header("Input")]
-    [SerializeField] private KeyCode closeKey;
-
     [Header("UI")]
     [SerializeField] private GameObject noteCanvas;
     [SerializeField] private int pageIndex;
@@ -26,6 +23,8 @@ public class NoteController : MonoBehaviour, Interactable
     {
         noteCanvas.SetActive(false);
     }
+
+    public bool IsOpen() { return isOpen; }
 
     public void ShowInteractable()
     {
@@ -37,7 +36,7 @@ public class NoteController : MonoBehaviour, Interactable
         playerBookComponent.LockBookVisual(true); // Lock the book visual when the note is open
     }
 
-    public void CloseNote()
+    public void Close()
     {
         noteCanvas.SetActive(false);
         DisablePlayer(true);
@@ -55,16 +54,7 @@ public class NoteController : MonoBehaviour, Interactable
         return crosshairImg;
     }
 
-    private void Update()
-    {
-        if (isOpen)
-        {
-            if (Input.GetKeyDown(closeKey))
-            {
-                CloseNote();
-            }
-        }
-    }
+
 
     public void SetInteractor(FirstPersonController player)
     {
