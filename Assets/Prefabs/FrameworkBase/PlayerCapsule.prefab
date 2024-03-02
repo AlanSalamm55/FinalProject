@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8616685848737228371}
-  rayLength: 5
-  crosshairBase: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  rayLength: 3
+  crosshairBase: {fileID: 21300000, guid: bf9697b5232e73b43abea5e2aa317658, type: 3}
   eKey: {fileID: 2464693593148967347}
   interactKey: 101
 --- !u!114 &6460809866164059259
@@ -925,6 +925,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606361114360443752, guid: 9c5bcfeb0fec2e14fb53617185e83f94,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4792387928886386700, guid: 9c5bcfeb0fec2e14fb53617185e83f94,
         type: 3}
