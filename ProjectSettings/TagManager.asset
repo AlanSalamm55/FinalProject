@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - KurdishContainer
+  - Outline
   layers:
   - Default
   - TransparentFX
