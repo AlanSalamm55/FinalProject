@@ -19,6 +19,8 @@ public class NoteController : MonoBehaviour, Interactable
     [SerializeField] private GameObject noteCanvas;
     [SerializeField] private int pageIndex;
 
+    public event Action onClosedEvent;
+
     private void Start()
     {
         noteCanvas.SetActive(false);
@@ -29,7 +31,10 @@ public class NoteController : MonoBehaviour, Interactable
     public void ShowInteractable()
     {
         foreach (KurdishWord word in wordsInNote) { word.RefreshGuess(word); }
-        if (!isOpenedOnce) { isOpenedOnce = true; }
+        if (!isOpenedOnce)
+        {
+            isOpenedOnce = true;
+        }
         noteCanvas.SetActive(true);
         DisablePlayer(false);
         isOpen = true;
@@ -38,6 +43,8 @@ public class NoteController : MonoBehaviour, Interactable
 
     public void Close()
     {
+        onClosedEvent?.Invoke();
+
         noteCanvas.SetActive(false);
         DisablePlayer(true);
         isOpen = false;

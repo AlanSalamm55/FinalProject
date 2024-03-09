@@ -17,7 +17,7 @@ public class PlayerBookComponent : MonoBehaviour
     [SerializeField] private KeyCode interactKey;
     public HashSet<string> kurdishWordList = new HashSet<string>();
 
-
+    public event Action onBookOpen;
 
     void Update()
     {
@@ -25,6 +25,8 @@ public class PlayerBookComponent : MonoBehaviour
         {
             isOpen = !isOpen;
             OpenBook(isOpen);
+            onBookOpen?.Invoke();
+
         }
     }
 
