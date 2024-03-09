@@ -253,12 +253,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3062ea743e97c58419ebc4cb2124a119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textPrefab: {fileID: 8505166956681172919, guid: 2825378a1e32fae46a4c62d8dc12fb22,
-    type: 3}
-  imagePrefab: {fileID: 5615237222743066757, guid: fc77c37138c03334884ca1d577a93fba,
+  textPrefab: {fileID: 1585819707684363066, guid: 2825378a1e32fae46a4c62d8dc12fb22,
     type: 3}
   displayTime: 5
   fadeDuration: 1
+  imagePrefab: {fileID: 5615237222743066757, guid: fc77c37138c03334884ca1d577a93fba,
+    type: 3}
 --- !u!1 &5393215578589016642
 GameObject:
   m_ObjectHideFlags: 0
