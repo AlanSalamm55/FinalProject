@@ -658,7 +658,6 @@ MonoBehaviour:
   startScreen: {fileID: 1082022036}
   noteObject: {fileID: 120736376}
   bellObject: {fileID: 344489501}
-  noteSpriteOffset: {x: 0, y: 1, z: 0}
   playerBookComponent: {fileID: 1178780790}
 --- !u!4 &878790253
 Transform:
@@ -1069,6 +1068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1082022035}
   - component: {fileID: 1082022036}
+  - component: {fileID: 1082022037}
   m_Layer: 0
   m_Name: StartScreenPos
   m_TagString: Untagged
@@ -1110,6 +1110,20 @@ MonoBehaviour:
   quitButton: {fileID: 435554886}
   canvas: {fileID: 1754049706}
   playerMoveTime: 1
+--- !u!114 &1082022037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082022034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9dca89e810f824ea21bee1e04ce3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1876783150}
+  canvas: {fileID: 1754049706}
 --- !u!1 &1097440635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1650,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135760266484805224, guid: 6763906395a6ce94d8d9329ad1432b9a,
+        type: 3}
+      propertyPath: englishWords.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135760266484805224, guid: 6763906395a6ce94d8d9329ad1432b9a,
+        type: 3}
+      propertyPath: englishWords.Array.data[1]
+      value: 
+      objectReference: {fileID: 3408905793780636511, guid: 47014d70bba94f84db475adabfc03051,
+        type: 3}
     - target: {fileID: 135760266484805227, guid: 6763906395a6ce94d8d9329ad1432b9a,
         type: 3}
       propertyPath: m_Name
