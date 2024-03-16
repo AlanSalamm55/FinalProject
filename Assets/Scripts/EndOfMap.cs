@@ -100,7 +100,7 @@ public class EndOfMap : MonoBehaviour, Interactable
                     collider.enabled = false;
                     PopUpText.Instance.ShowText("You have reached the maximum attempts.");
                     Close(); // Close the book
-
+                    PauseScreen.Instance.LoseState();
                 }
                 break;
             case 2: // Not all points used

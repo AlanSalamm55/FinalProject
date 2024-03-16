@@ -1,10 +1,12 @@
 using StarterAssets;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PauseScreen : MonoBehaviour
 {
+    private static PauseScreen instance; // Singleton instance
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] RectTransform canvas;
     [SerializeField] private Button continueButton;
@@ -16,9 +18,38 @@ public class PauseScreen : MonoBehaviour
     private bool isFading = false;
     private float fadeDuration = 1f; // Duration for the fade effect
 
+    [SerializeField] private Image endOfGameimg;
+    [SerializeField] private TextMeshProUGUI endOfGameText;
+
+    public static PauseScreen Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<PauseScreen>();
+                if (instance == null)
+                {
+                    Debug.LogError("PauseScreen instance not found in the scene.");
+                }
+            }
+            return instance;
+        }
+    }
+
     private void Start()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
         canvas.gameObject.SetActive(false);
+
+        endOfGameimg.gameObject.SetActive(false);
+        endOfGameText.gameObject.SetActive(false);
 
         continueButton.onClick.AddListener(TogglePause);
         quitButton.onClick.AddListener(QuitGame);
@@ -115,6 +146,45 @@ public class PauseScreen : MonoBehaviour
         }
     }
 
+    public void LoseState()
+    {
+        canvas.gameObject.SetActive(true);
+        continueButton.gameObject.SetActive(false);
+        // Enable cursor and unlock it
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        playerController.enabled = false;
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>().LockBookVisual(true);
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerRaycast>().ShowCrossHair(false);
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerRaycast>().TurnOffRaycast();
+
+        endOfGameimg.gameObject.SetActive(true);
+        endOfGameText.gameObject.SetActive(true);
+        canPause = false;
+        endOfGameText.text = "Out of tries You Lost";
+    }
+
+    public void WinState()
+    {
+        canvas.gameObject.SetActive(true);
+        continueButton.gameObject.SetActive(false);
+        // Enable cursor and unlock it
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        playerController.enabled = false;
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>().LockBookVisual(true);
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerRaycast>().ShowCrossHair(false);
+        playerController.GetPlayerCameraRoot().GetComponent<PlayerRaycast>().TurnOffRaycast();
+
+        endOfGameimg.gameObject.SetActive(true);
+        endOfGameText.gameObject.SetActive(true);
+        canPause = false;
+        endOfGameText.text = "you Won";
+    }
+
     public bool CanPause() { return canPause; }
     public void CanPause(bool canPause) { this.canPause = canPause; }
+
 }
