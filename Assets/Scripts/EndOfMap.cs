@@ -146,10 +146,18 @@ public class EndOfMap : MonoBehaviour, Interactable
                 confirm.onClick.AddListener(OnConfirmButtonClicked);
             }
 
+            Book book = bookComponent.GetBook();
             bookComponent.OpenBook(true, pageIndex);
             bookComponent.HideButtons(true);
             // Lock the book
             bookComponent.LockBookVisual(true);
+
+            if (!book.AreWordCountsEqual(pageIndex))
+            {
+                PopUpText.Instance.ShowText("Turn back and find all the Kurdish words in this map.");
+                return;
+            }
+            PopUpText.Instance.ShowText("match words to illustrations: ");
         }
     }
 

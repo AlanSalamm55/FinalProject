@@ -112,7 +112,6 @@ public class PlayerRaycast : MonoBehaviour
                 {
                     bookComp.AddWordToEnglishImages(englishWord, pageIndex);
                 }
-                PopUpText.Instance.ShowText("match words to illustrations: ");
                 break;
 
             default:
