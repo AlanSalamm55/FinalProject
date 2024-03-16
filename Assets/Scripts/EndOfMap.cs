@@ -93,7 +93,6 @@ public class EndOfMap : MonoBehaviour, Interactable
             case 1: // At least one mistake
                 remainingAttempts--;
                 string message = "Incorrect answer. Please try again. Attempts left: " + remainingAttempts;
-                onConfirmClick?.Invoke();
                 PopUpText.Instance.ShowText(message);
 
                 if (remainingAttempts <= 0)
@@ -101,7 +100,7 @@ public class EndOfMap : MonoBehaviour, Interactable
                     collider.enabled = false;
                     PopUpText.Instance.ShowText("You have reached the maximum attempts.");
                     Close(); // Close the book
-                    onConfirmClick?.Invoke();
+
                 }
                 break;
             case 2: // Not all points used

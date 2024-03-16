@@ -104,7 +104,6 @@ public class PlayerRaycast : MonoBehaviour
                 {
                     bookComp.AddWordToKurdishVocabulary(kurdishWord, pageIndex);
                 }
-                PopUpText.Instance.ShowText("New Kurdish word, check page: " + pageIndex + 1);
                 break;
 
             case EnglishWord:

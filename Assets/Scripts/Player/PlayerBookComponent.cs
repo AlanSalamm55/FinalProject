@@ -46,6 +46,8 @@ public class PlayerBookComponent : MonoBehaviour
         {
             kurdishWordList.Add(kurdishWord.RightAnswer());
             book.AddWordToNoteBookVisual(kurdishWord, pageIndex);
+            int dispIndex = pageIndex + 1;
+            PopUpText.Instance.ShowText("New Kurdish word, check page: " + dispIndex);
         }
     }
 

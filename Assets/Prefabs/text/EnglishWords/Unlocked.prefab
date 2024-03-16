@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -3262874887593402251, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: rightAnswer
-      value: hello
+      value: Unlocked
       objectReference: {fileID: 0}
     - target: {fileID: -3262874887593402251, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
@@ -126,7 +126,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5bd6d59a5a001d64ba69fe7f8424124e,
+      objectReference: {fileID: 21300000, guid: e6b08484aec00204b87018aac36bec98,
         type: 3}
     - target: {fileID: 1099866760969098762, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
@@ -141,7 +141,7 @@ PrefabInstance:
     - target: {fileID: 6145059826657745763, guid: ee9127b1af578274cb18eb503db6131d,
         type: 3}
       propertyPath: m_Name
-      value: EnglishText 3
+      value: Unlocked
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee9127b1af578274cb18eb503db6131d, type: 3}
