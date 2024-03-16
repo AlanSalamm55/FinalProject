@@ -11,7 +11,7 @@ public class StartScreen : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Button quitButton;
     [SerializeField] RectTransform canvas;
-
+    [SerializeField] PauseScreen pauseScreen;
     [SerializeField] private float playerMoveTime = 1.0f;
 
     public event Action onGameStart;
@@ -23,7 +23,7 @@ public class StartScreen : MonoBehaviour
         // Enable cursor and unlock it
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
+        pauseScreen.CanPause(false);
         playerController.enabled = false;
         playerController.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>().LockBookVisual(true);
         playerController.GetPlayerCameraRoot().GetComponent<PlayerRaycast>().ShowCrossHair(false);
@@ -39,6 +39,7 @@ public class StartScreen : MonoBehaviour
     public void StartGame()
     {
         canvas.gameObject.SetActive(false);
+        pauseScreen.CanPause(true);
         playerController.GetPlayerCameraRoot().GetComponent<PlayerBookComponent>().LockBookVisual(false);
         playerController.GetPlayerCameraRoot().GetComponent<PlayerRaycast>().ShowCrossHair(true);
 

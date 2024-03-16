@@ -13,6 +13,7 @@ public class PlayerRaycast : MonoBehaviour
     [SerializeField] private FirstPersonController player;
     private PlayerBookComponent bookComp;
     [SerializeField] private float rayLength = 5f;
+    private float rayLengthval = 5f;
 
     [Header("Raycast")]
     private Image crosshair;
@@ -29,7 +30,7 @@ public class PlayerRaycast : MonoBehaviour
     {
         bookComp = this.GetComponent<PlayerBookComponent>();
         crosshair = GetComponentInChildren<Image>();
-
+        rayLengthval = rayLength;
         if (crosshair != null)
         {
             crosshair.sprite = crosshairBase;
@@ -40,7 +41,7 @@ public class PlayerRaycast : MonoBehaviour
 
     void Update()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, rayLength))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, rayLengthval))
         {
             HandleRaycastHit(hit);
         }
@@ -137,6 +138,10 @@ public class PlayerRaycast : MonoBehaviour
 
     internal void ShowCrossHair(bool hide)
     {
-        crosshair.gameObject.SetActive(hide);
+        if (crosshair != null)
+            crosshair.gameObject.SetActive(hide);
     }
+
+    public void TurnOffRaycast() { rayLengthval = 0; }
+    public void TurnOnRaycast() { rayLengthval = rayLength; }
 }
