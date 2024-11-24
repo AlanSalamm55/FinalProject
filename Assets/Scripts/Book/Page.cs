@@ -7,7 +7,7 @@ public class Page : MonoBehaviour
 {
     private List<KurdishWord> kurdishWords = new List<KurdishWord>();
     private List<EnglishWord> englishWords = new List<EnglishWord>();
-    [SerializeField] private List<Image> wordIllustrations;
+    //[SerializeField] private List<Image> wordIllustrations;
     [SerializeField] private RectTransform kurdishWordContainer;
     [SerializeField] private RectTransform illustrationContainer;
 

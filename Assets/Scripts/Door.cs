@@ -14,6 +14,7 @@ public class Door : MonoBehaviour, Interactable
     private float closeAngle = 0f; // Angle to close the door (in degrees)
     private float duration = 1f; // Duration of the door animation
 
+
     public void Close()
     {
 
